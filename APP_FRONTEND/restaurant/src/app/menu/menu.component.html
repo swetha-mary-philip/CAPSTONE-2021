@@ -1,0 +1,39 @@
+
+<div class="container listpage">
+    <div class="row">
+        <div class="col-12 search-container">
+            <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+                <input formControlName="name" id="searchstring" type="search" placeholder="filter unwanted ingredient" name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+          <div style="clear: both;">
+            <div class="col-md-4" style="padding-top:50px;padding-bottom:20px" *ngFor= "let food of menuitems;">
+                <div class="card border-0 rounded-0">
+                    <div class="card-body text-justify">
+                        <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
+                        <br><br>
+                        <a id="foodname"  class="bak-white h4 editclick" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
+                        <br><br>
+                        <p class="bak-white">{{food.description}}</p>
+                        <p id="foodprice" class="bak-white"><b>Price: </b>{{food.price}}</p>
+                        <p class="bak-white"><b>Rating: </b><span *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p>
+                       <input id="foodid" type="hidden" value= {{food._id}}>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <div id="addtocart" class="btn-success btn text-uppercase"
+                        aria-label={{food.name}}>ADD TO CART &nbsp;&nbsp;&nbsp;</div>
+                        <input class="btn text-uppercase border" value="0" required min=0 max=10 type="number">
+                      
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+        
+        <div class="col-lg-12 col-12 text-center">
+            <a id="btnaddnewfood" class="videobtn btn text-uppercase" target="_blank" aria-label="Add new Item" href="/new">ADD NEW ITEM</a>
+        </div>
+    </div>
+    </div>

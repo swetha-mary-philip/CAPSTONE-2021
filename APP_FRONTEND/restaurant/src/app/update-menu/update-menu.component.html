@@ -1,0 +1,92 @@
+<div class="container">
+    <h1 class="abouttitle text-center">Create New Food</h1>
+    <div class="row" *ngFor= "let food of foodDetails;">
+        <form [formGroup]="foodForm" (ngSubmit)="updateFood()" >
+            <div class="col-sm-6 text-center" style="padding:15px;">
+                <div class="form-group" [ngClass]="displayFieldCss('name')">
+                    <label for="name">Menu Name</label>
+                    <input [(ngModel)]="food.name" formControlName ="name" class="form-control" id="inputname" type="text" required name="name">
+                    <app-field-error-display 
+                    [displayError]="isFieldValid('name')"
+                    errorMsg="Please enter a name">
+                </app-field-error-display> 
+                </div>
+                <div class="form-group" [ngClass]="displayFieldCss('description')">
+                    <label for="description">Description</label>
+                    <textarea [(ngModel)]="food.description" formControlName ="description" class="form-control" id="inputdescription" required  name="description"></textarea>
+                    <app-field-error-display 
+                    [displayError]="isFieldValid('description')"
+                    errorMsg="Please enter minimun 15 characters">
+                </app-field-error-display> 
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="imageurl">Image URL</label>
+                    <input [(ngModel)]="food.imageurl"  formControlName ="imageurl" class="form-control" id="inputurl" name="imageurl" type="text" required placeholder="Image URL">
+                    <app-field-error-display 
+                    [displayError]="isFieldValid('imageurl')"
+                    errorMsg="Please enter a image url">
+                </app-field-error-display> 
+                </div>
+                <div class="form-group">
+                    <label for="price">price</label>
+                    <input [(ngModel)]="food.price"  formControlName ="price" class="form-control" id="price" name="price" type="text" required placeholder="Price in CAD">
+                    <app-field-error-display 
+                    [displayError]="isFieldValid('price')"
+                    errorMsg="Please enter a price">
+                </app-field-error-display> 
+                </div>
+                <div class="form-group">
+                    <label for="avg_rating">Average Rating</label>
+                    <input [(ngModel)]="food.avg_rating"  formControlName ="avg_rating" class="form-control" id="avg_rating" name="avg_rating" type="text" required placeholder="Average Rating">
+                    <app-field-error-display 
+                    [displayError]="isFieldValid('avg_rating')"
+                    errorMsg="Please enter a rating value">
+                </app-field-error-display> 
+                </div>
+            </div>
+            <div class="col-sm-6 text-center" style="padding:15px;">
+                <div class="form-group" formArrayName= "ingredients">
+                    <div class="container col-sm-12">
+                        <label for="ingredients">Ingredients</label>
+                        <table class="table order-list" id="myTable_ingredient">
+                            <thead>
+                                <tr>
+                                    <td>Ingredient</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr *ngFor="let item of _ingredients.controls; let pointIndex=index" [formGroupName]="pointIndex">
+                                    <td class="col-sm-4">
+                                        <input  formControlName="name" class="form-control" required="" type="text">
+                                    </td>
+                                    
+                                    <td class="col-sm-2">
+                                        <input class="btn btn-danger" (click)="delete_ingredients(pointIndex)" type="button" value="Remove">
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: left;">
+                                        <input id="add_ing" (click)="add_ingredients()" class="btn btn-info" type="button" value="Add Ingredient">
+                                    </td>
+                                </tr>
+                                <tr></tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                
+                
+                <button style="margin-right: 10px;" class="btn btn-success" type="submit" [disabled]="!foodForm.valid">Update</button>
+                <a class="btn btn-primary" href="/menu">Back</a>
+                <input style="margin-left: 10px;" class="btn btn-danger" type="button" (click)="myFunc(food._id)" value="Delete" >
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- {{ this.foodForm.value | json }} -->

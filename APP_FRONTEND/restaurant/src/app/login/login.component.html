@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-7 text-center about-text">
+            <h1 style="margin-bottom: 10px;" class="abouttitle text-center">User Login</h1>
+            <form class="form-horizontal" (ngSubmit)="userLogin(logindata)" style="padding-top:20px" [formGroup]="form">
+                <div class="form-group" [ngClass]="displayFieldCss('email')">
+                    <div class="col-sm-12">
+                        <label style="margin-right: 10px;" for="email" class="control-label required">Email</label>
+                        <input style="margin-right: 12px;" type="email" id="email" class="form-control control-label.required" formControlName="email" [(ngModel)]="logindata.email" required>
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('email')"
+                        errorMsg="Please enter a valid email">
+                        </app-field-error-display>
+                    </div>
+                </div>
+                
+                <div class="form-group" [ngClass]="displayFieldCss('password')">
+                    <div class="col-sm-12">
+                        <label for="email" class="control-label required">Password</label>
+                        <input style="margin-right: 10px;" type="password" id="password" class="form-control control-label.required" [(ngModel)]="logindata.password" formControlName="password">
+                        <app-field-error-display 
+                        [displayError]="isFieldValid('password')"
+                         errorMsg="Please enter your password">
+                        </app-field-error-display>
+                    </div>
+                </div>
+                <button class="btn btn-success" href="#" type="submit" style="margin-left:80px;" [disabled]="!form.valid"> Login </button>
+                <a style="margin-left: 10px;" routerLink="/register" class="register otherpage">Register</a>
+
+            </form>
+            <img class="img-fluid px-3 text-center abt-btm-img" src="../../assets/images/background2.png" alt="ingredients image">
+        </div>
+        <div class="col-md-5 col-xs-12 text-center" style="margin-top: 6px;">
+            <div class="portrait">
+                <img class="img-responsive img-fluid fit-image" src="https://media.giphy.com/media/eh7DTz2vvKbu23yVFb/giphy.gif" />
+            </div>
+        </div>
+    </div>
+
+</div>

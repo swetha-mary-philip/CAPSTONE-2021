@@ -1,0 +1,30 @@
+<nav  class="navbar" style=" min-height:70px;">
+    <div class="container-fluid" style="margin-top:10px;">
+        <div class="navbar-header">
+            <button class="navbar-toggle collapsed" style="background-color:white;" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar" style="background-color:black;"></span>
+                <span class="icon-bar" style="background-color:black;"></span>
+                <span class="icon-bar" style="background-color:black;"> </span>
+        </button>
+        <img class="img-fluid pb-3 pull-left logo-img" src="../../assets/images/logo1.png"/>
+        <a class="navbar-brand" style="color:white; font-weight:bold;font-family:cursive; font-size: 30px;" href="/">Bon Appétit</a>
+        
+    </div>
+        
+        <div class="navbar-collapse collapse" id="navbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="navli otherpage"><a routerLink="">Home</a></li>
+                <li class="navli otherpage"><a routerLink="/about">About</a></li>    
+                <li id="menu" class="navli menu otherpage"><a href="/menu">Menu</a></li> 
+                <li class="navli otherpage"><a href="/contact">Contact</a></li> 
+                <li class="navli otherpage" id="cart"><a style="padding: 0px;" href="/cart"><img class="img-fluid pb-3 pull-left login-img" src="../../assets/images/cart.png"/><span class="cart-text">0</span></a></li>
+                <!-- <li class="navli otherpage"><a href="/cart">Checkout</a></li>  -->
+                <li class="navli otherpage" id="login"><a style="padding: 0px;" routerLink="/login"><img class="img-fluid pb-3 pull-left login-img" src="../../assets/images/login.png"/></a> </li>   
+                <li class="navli otherpage" id="logout" style="display: none;"><a style="padding: 0px;"><img class="img-fluid pb-3 pull-left login-img" src="../../assets/images/logout.jpg"/></a></li>           
+            </ul>      
+    </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
