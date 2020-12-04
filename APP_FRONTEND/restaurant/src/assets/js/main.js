@@ -13,6 +13,10 @@ $(document).ready(function() {
       var data = getLocatStoragedata();
       var newquan = $(this).siblings('#quan').val();
       var itemdata = $(this).siblings('#foodguid').val();
+      var total = $(this).siblings('#total').val();
+      
+    
+      var amountNew = 0;
 
       if (newquan != 0) {
           var index = -1;
@@ -20,15 +24,25 @@ $(document).ready(function() {
               if (item.ItemID === itemdata) {
                   index = i;
               }
+              else{
+              amountNew += data[i].price * data[i].quantity;
+              }
           });
 
-
+          var price = data[index].price;
           data[index].quantity = newquan;
+          data[index].itemPrice = newquan * price;
+          amountNew += newquan * price;
 
       } else {
           data.splice(index, 1);
+          var amount = JSON.parse(localStorage.getItem('amount') || JSON.stringify(itemList.subtotal));
+          amountNew = amount - total;
       }
+
+      localStorage.setItem("amount", JSON.stringify(amountNew));
       setLocalStorageData(data);
+      
       window.location.reload();
 
   });
@@ -37,6 +51,7 @@ $(document).ready(function() {
   $(document).on("click", "#deleteitem", function() {
       var data = getLocatStoragedata();
       var itemdata = $(this).siblings('#foodguid').val();
+      var total = $(this).siblings('#total').val();
 
       var index = -1;
       data.forEach(function(item, i) {
@@ -45,6 +60,9 @@ $(document).ready(function() {
           }
       });
       data.splice(index, 1);
+      var amount = JSON.parse(localStorage.getItem('amount') || JSON.stringify(itemList.subtotal));
+      amountNew = amount - total;
+      localStorage.setItem("amount", JSON.stringify(amountNew));
       setLocalStorageData(data);
       window.location.reload();
 
@@ -90,14 +108,19 @@ $(document).ready(function() {
       var quantity = $(this).siblings("input").val();
       var currentItemImage = $(this).parent().siblings().children('img').attr('src');
       var currentItem = $(this).parent().siblings().children('#foodname').html();
-      var currentPrice = $(this).parent().siblings().children('#foodprice').text();
+      var currentPrice = $(this).parent().siblings().children('#foodprice').val();
       var currentitemId = $(this).parent().siblings().children('#foodid').val();
+
+      var amount = JSON.parse(localStorage.getItem('amount') || JSON.stringify(itemList.subtotal));
+      amountNew = amount + (quantity* currentPrice);
+      localStorage.setItem("amount", JSON.stringify(amountNew));
 
       itemList.items = getLocatStoragedata(); // fetch existing items in cart
       itemList.items.push({
           itemImage: currentItemImage,
           itemName: currentItem,
-          itemPrice: currentPrice,
+          price: currentPrice,
+          itemPrice: currentPrice *quantity,
           quantity: quantity,
           item_id: currentitemId,
           ItemID: currentItem + Math.random() // unique ID for each item even though same product

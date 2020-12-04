@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="abouttitle text-center" style="margin-bottom: 0px;">Cart Items</h1>
     <div class="pull-right" style="margin-bottom: 5px;">
-        <a id="checkout" class="btn btn-success" style="padding:8px;font-size: large;" href="/checkout">Checkout</a>
+       <span class="h3">AMOUNT : {{amount}}</span> <a id="checkout" class="btn btn-success" style="padding:8px;font-size: large;" href="/checkout">Checkout</a>
     </div>
     
     <div style="clear: both;">
@@ -18,7 +18,9 @@
                 <h5 class="bak-white" style="font-weight:bold;">{{food.itemName}}</h5>
                 <label><b>Quantity: </b></label>
                 <input id="quan" type="number" value= {{food.quantity}}>
-                <p class="bak-white"><b>Price: </b>{{food.itemPrice}}</p>
+                <br><br>
+                <p class="bak-white"><b>Total Price: </b>$ {{food.itemPrice}} CAD</p>
+                <input id="total" type="hidden" value= {{food.itemPrice}}>
                 <input id="foodguid" type="hidden" value= {{food.ItemID}}>
                 <a id="updatecart" class="btn btn-primary updatecart">Update Cart</a>
                 <a id="deleteitem" class="btn btn-danger deleteitem" style="margin-left: 10px;">Remove</a>

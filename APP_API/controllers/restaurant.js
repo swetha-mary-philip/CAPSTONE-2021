@@ -154,7 +154,7 @@ const getfilteredmenu = function (req, res){
 
 //CUSTOMER
 const createcustomer = function (req, res){
-
+console.log("inside api");
     Customer.create({
         firstname :req.body.firstname,
         lastname :req.body.lastname,
@@ -305,7 +305,6 @@ const updateavailability = function (req, res){
     })
 };
 
-
   
 const getreservations = function (req, res){
     
@@ -318,7 +317,6 @@ const getreservations = function (req, res){
 
     })
 };
-
 
 //ORDERS
 const getorders = function (req, res){
@@ -402,7 +400,7 @@ const createorder = function (req, res){
         order_type :req.body.order_type,
         special_instructions :req.body.special_instructions,
         orderdate: Date.now(),
-        payment:req.body.payment,
+        paymentType:req.body.paymentType,
         amount:req.body.amount,
         customer_id: moongose.Types.ObjectId(req.body.customer_id),
         order_details: req.body.order_details     
@@ -416,7 +414,6 @@ const createorder = function (req, res){
         }
     })
 };
-
 
 //REVIEWS
 const getreviews = function (req, res){

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Menu,UserRegister, UserLogin, UserToken} from './menu'
+import { Menu,UserRegister, UserLogin, UserToken, Customer, Order} from './menu'
 import { HttpClient, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @Injectable({
@@ -9,6 +9,8 @@ export class MenuService {
 
   private menuItemUrl  = 'http://localhost:3000/api/menu'; // for all menu collection
   private userLoginUrl  = 'http://localhost:4000/user/login'; 
+  private customerUrl = "http://localhost:3000/api/customer" // saving customer
+  private orderUrl = "http://localhost:3000/api/orders" // saving Order
   private menuItemfilterUrl  = 'http://localhost:3000/api/menu/substance/search'; 
   private userRegisterUrl  = 'http://localhost:4000/user/signup'; 
   constructor(private http:HttpClient) {  }
@@ -62,6 +64,21 @@ deleteFood(foodId: string): Promise<void>
       //window.history.go(-1); // go back to the recipe details page
     }
   }
+
+// POST operation to create a customer
+createCustomer(cust: Customer): Promise<void | Customer>{
+ 
+  return this.http.post(this.customerUrl, cust)
+  .toPromise().then(response => response as Customer)
+  .catch(this.handleError);
+}
+
+// POST operation to create a order
+createOrder(ord: Order): Promise<void | Order>{
+  return this.http.post(this.orderUrl, ord)
+  .toPromise().then(response => {localStorage.removeItem('amount'); localStorage.removeItem('cartItems'); window.location.href = "/"})
+  .catch(this.handleError);
+}
 
 // LOGIN/REGISTER
 

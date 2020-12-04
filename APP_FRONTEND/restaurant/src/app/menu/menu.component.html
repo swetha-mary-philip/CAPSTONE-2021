@@ -16,7 +16,8 @@
                         <a id="foodname"  class="bak-white h4 editclick" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
                         <br><br>
                         <p class="bak-white">{{food.description}}</p>
-                        <p id="foodprice" class="bak-white"><b>Price: </b>{{food.price}}</p>
+                        <p  class="bak-white"><b>Price: </b>$ {{food.price}} CAD</p>
+                        <input id="foodprice" type="hidden" value= {{food.price}}>
                         <p class="bak-white"><b>Rating: </b><span *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p>
                        <input id="foodid" type="hidden" value= {{food._id}}>
                     </div>

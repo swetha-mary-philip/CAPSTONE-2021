@@ -15,12 +15,14 @@ import { switchMap } from 'rxjs/operators';
 export class CartComponent implements OnInit {
 
   foodDetails: any;
+  amount : any;
 
   constructor(private fb: FormBuilder,private menuService: MenuService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
     this.foodDetails=  JSON.parse(localStorage.getItem("cartItems"));
+    this.amount=  JSON.parse(localStorage.getItem("amount"));
     console.log(this.foodDetails);
 
 }

@@ -5,7 +5,7 @@ export class Menu {
     name : string;
     description: string;
     imageurl: string;
-    price: string;
+    price: number;
     ingredients: ingredientsList[];
     //createdate: Date;
     //modifieddate: Date;
@@ -31,4 +31,39 @@ export class UserRegister {
 
 export class UserToken {
     token : string;
+}
+
+export class Customer {
+    _id : string;
+    firstname: string;
+    lastname: string;
+    email: string;
+    phone: string;
+    address : addressList[];
+}
+export class addressList {
+    addressline1: string;
+    addressline2: string;
+    city: string;
+    zipcode: string;
+    province: string;
+    country: string;
+}
+
+export class Order{
+    _id: string;
+    status: string;
+    order_type: string;
+    special_instructions: string;
+    paymentType : string;
+    amount: number;
+    customer_id : string;
+    order_details : orderList[];
+}
+
+
+export class orderList{
+    name: string;
+    quantity: number;
+    Menu_item_id: string;
 }

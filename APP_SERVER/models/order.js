@@ -22,7 +22,8 @@ var orderSchema = new mongoose.Schema({
    status: {type:String, enum:['Ordered','Delivered','Cancelled']},
    order_type: {type:String, enum:['Dine-in','Delivery']},
    special_instructions:{type:String},
-   payment : [paymentdetails]
+   paymentType : {type: String, enum:['paypal']}
+   //payment : [paymentdetails]
 });
 
 

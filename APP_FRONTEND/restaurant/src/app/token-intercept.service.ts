@@ -8,14 +8,16 @@ import {HttpClient,HttpHeaders,HTTP_INTERCEPTORS, HttpInterceptor} from '@angula
  export class TokenInterceptService implements HttpInterceptor {
 
    constructor(private injector: Injector) {
-     console.log("incept");
+     
     }
 
    intercept(req,next){
      var x = sessionStorage.getItem("usertoken")
      console.log(req.url.indexOf('user'));
 
-     if(req.method != "GET" && req.url.indexOf('user') == -1  && req.url.indexOf('reviews') == -1 ){
+     if(req.method != "GET" && req.url.indexOf('user') == -1  && req.url.indexOf('reviews') == -1 
+          && req.url.indexOf('customer') == -1 && req.url.indexOf('orders') == -1)
+    {
      let tokenrequest = req.clone({
        setHeaders:{
          token: x

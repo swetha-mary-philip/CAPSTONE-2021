@@ -1,2 +1,100 @@
-<input type="number" [(ngModel)]= "finalAmount">
-<div id= "paypal-checkout-btn"></div>
+<div class="container">
+    <h1 class="abouttitle text-center">Place Order</h1>
+    <div class="row">
+            <form #newfood="ngForm" [formGroup]="orderForm" (ngSubmit)="SaveOrder()">
+                <div class="col-sm-6 text-center">
+
+                    <div class="form-group" [ngClass]="displayFieldCss('firstname')">
+                        <label class="control-label" for="firstname"><span class="required1">*</span>First Name</label>
+                        <input formControlName="firstname" class="form-control  control-label.required" id="inputfirstname" type="text" required name="firstname" placeholder="First Name" required minlength="2">
+                        <app-field-error-display [displayError]="isFieldValid('firstname')"
+                        errorMsg="Please enter a  First Name">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('lastname')">
+                        <label for="lastname">Last Name</label>
+                        <input formControlName="lastname" class="form-control" id="inputlastname" type="text" name="lastname" minlength="2">
+
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('phone')">
+                        <label class="control-label" for="phone"><span class="required1">*</span>Phone Number</label>
+                        <input formControlName="phone" class="form-control control-label.required" id="phone" required name="phone" type="number" placeholder="Phone Number">
+                        <app-field-error-display [displayError]="isFieldValid('phone')"
+                        errorMsg="Please enter a phone number">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('email')">
+                        <label for="email" class="control-label">Email Id: </label>
+
+                        <input type="email" class="form-control" formControlName="email" ngmodel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{​2,}​$" id="email" name="email">
+                        <app-field-error-display [displayError]="isFieldValid('email')"
+                        errorMsg="Please enter a valid email">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('province')">
+                        <label class="control-label" for="province"><span class="required1">*</span>Province</label>
+                        <input formControlName="province" class="form-control  control-label.required" id="inputprovince" type="text" required name="province" placeholder="Province" minlength="2">
+                        <app-field-error-display [displayError]="isFieldValid('province')"
+                        errorMsg="Please enter a  province">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('country')">
+                        <label class="control-label" for="country"><span class="required1">*</span>country</label>
+                        <input formControlName="country" class="form-control  control-label.required" id="inputcountry" type="text" required name="country" placeholder="Country Name" minlength="2">
+                        <app-field-error-display [displayError]="isFieldValid('country')"
+                        errorMsg="Please enter a  country">
+                        </app-field-error-display>
+                    </div>
+                </div>
+                <div class="col-sm-6 text-center">
+                    <div class="form-group" [ngClass]="displayFieldCss('addressline1')">
+                        <label for="addressline1" class="control-label"><span class="required1">*</span>Address Line 1: </label>
+                        <input formControlName="addressline1" class="form-control  control-label.required" id="inputaddressline1" type="text" required name="addressline1" placeholder="Address Line 1" minlength="5">
+                        <app-field-error-display [displayError]="isFieldValid('addressline1')"
+                        errorMsg="Please enter a Address Line 1">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('addressline2')">
+                        <label for="addressline2" class="control-label">Address Line 2: </label>
+                        <input formControlName="addressline2" class="form-control " id="inputaddressline2" type="text" name="addressline2" placeholder="Address Line 2" minlength="5">
+
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('city')">
+                        <label class="control-label" for="city"><span class="required1">*</span>city</label>
+                        <input formControlName="city" class="form-control  control-label.required" id="inputcity" type="text" required name="city" placeholder="City Name" minlength="2">
+                        <app-field-error-display [displayError]="isFieldValid('city')"
+                        errorMsg="Please enter a  city">
+                        </app-field-error-display>
+                    </div>
+                    <br>
+                    <div class="form-group" [ngClass]="displayFieldCss('zipcode')">
+                        <label class="control-label" for="zipcode"><span class="required1">*</span>zipcode</label>
+                        <input formControlName="zipcode" class="form-control  control-label.required" id="inputzipcode" type="text" required name="zipcode" placeholder="zipcode" minlength="6" maxlength="6">
+                        <app-field-error-display [displayError]="isFieldValid('zipcode')"
+                        errorMsg="Please enter a  zipcode">
+                        </app-field-error-display>
+                    </div>
+                    <div class="form-group" [ngClass]="displayFieldCss('special_instructions')">
+                        <label for="special_instructions">Special Instructions</label>
+                        <textarea formControlName="special_instructions" class="form-control" id="special_instructions" type="text" name="special_instructions" minlength="2"></textarea>
+                    </div>
+                    <button class="btn btn-success" type="submit" [disabled]="!orderForm.valid">Proceed</button>
+                </div>
+            </form>
+         
+        <div class="border col-sm-12 text-center">
+            <hr style="border-top:2px solid #f0b908; padding-top: 2px;"/>
+            <h4>AMOUNT: {{finalAmount}}</h4>
+            <div id="paypal-checkout-btn"></div>
+        </div>
+
+</div>
+
+<!-- {{ this.foodForm.value | json }} -->
