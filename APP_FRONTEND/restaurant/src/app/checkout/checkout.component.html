@@ -85,15 +85,16 @@
                         <label for="special_instructions">Special Instructions</label>
                         <textarea formControlName="special_instructions" class="form-control" id="special_instructions" type="text" name="special_instructions" minlength="2"></textarea>
                     </div>
-                    <button class="btn btn-success" type="submit" [disabled]="!orderForm.valid">Proceed</button>
+                    
+                    <button id="proceed" type="button" class="btn btn-success" [disabled]="!orderForm.valid">Proceed to Pay</button>
                 </div>
             </form>
-         
-        <div class="border col-sm-12 text-center">
-            <hr style="border-top:2px solid #f0b908; padding-top: 2px;"/>
-            <h4>AMOUNT: {{finalAmount}}</h4>
-            <div id="paypal-checkout-btn"></div>
-        </div>
+            <div id="paypal_section" class="border col-sm-12 text-center" style="display: none;">
+                <hr style="border-top:2px solid #f0b908; padding-top: 2px;"/>
+                <h4>AMOUNT: {{finalAmount}}</h4>
+                <div id="paypal-checkout-btn"></div>
+            </div>
+        
 
 </div>
 

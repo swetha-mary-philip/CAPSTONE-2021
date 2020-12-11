@@ -68,6 +68,11 @@ $(document).ready(function() {
 
   });
 
+  $(document).on("click", "#proceed", function() {
+
+    $("#paypal_section").show();
+  });
+
 
   function backgroundrender() {
       getStorageData();

@@ -44,7 +44,7 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
     },
     onAuthorize: (data, actions) =>{
       return actions.payment.execute().then((payment)=> {
-        console.log("done");
+        this.SaveOrder();
       })
     }
   };
@@ -124,7 +124,6 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
      }]
      };
 
-  console.log(data);
 
     //invoking the createfood methof in food service
 
