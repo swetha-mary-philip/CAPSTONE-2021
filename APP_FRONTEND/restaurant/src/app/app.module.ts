@@ -24,6 +24,7 @@ import { TokenInterceptService } from './token-intercept.service';
 import { NewMenuComponent } from './new-menu/new-menu.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ContactComponent } from './contact/contact.component';
     UpdateMenuComponent,
     NewMenuComponent,
     CheckoutComponent,
-    ContactComponent
+    ContactComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,11 @@ import { ContactComponent } from './contact/contact.component';
             {
               path: 'cart', // the cart page
               component : CartComponent
-              }
+              },
+              {
+                path: 'success', // the home page
+                component : OrderSuccessComponent
+                }
     ])
   ],
   providers: [{provide:APP_BASE_HREF, useValue: '/'},{

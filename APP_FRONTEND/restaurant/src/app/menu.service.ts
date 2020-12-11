@@ -76,7 +76,8 @@ createCustomer(cust: Customer): Promise<void | Customer>{
 // POST operation to create a order
 createOrder(ord: Order): Promise<void | Order>{
   return this.http.post(this.orderUrl, ord)
-  .toPromise().then(response => {localStorage.removeItem('amount'); localStorage.removeItem('cartItems'); window.location.href = "/"})
+  .toPromise().then(response => {localStorage.removeItem('amount'); localStorage.removeItem('cartItems'); 
+  window.location.href = "/success"})
   .catch(this.handleError);
 }
 

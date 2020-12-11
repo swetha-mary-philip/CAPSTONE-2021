@@ -17,7 +17,7 @@
                 <div class="form-group" [ngClass]="displayFieldCss('email')">
                     <div class="col-sm-12">
                 <label  for="email" class="control-label required">Email Id: </label>
-                <input type="email" class="form-control control-label.required"  formControlName="email" ngmodel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{​2,}​$" [(ngModel)] = "registerdata.email" id = "email" name="email" required>
+                <input type="email" class="form-control control-label.required"  formControlName="email" ngmodel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)] = "registerdata.email" id = "email" name="email" required>
                 
                 <app-field-error-display 
                 [displayError]="isFieldValid('email')"

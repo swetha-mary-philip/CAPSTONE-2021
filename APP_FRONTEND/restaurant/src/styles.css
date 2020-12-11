@@ -32,6 +32,14 @@ body {
     
   }
 
+  .backimg{
+    background: linear-gradient(rgb(255 255 255 / 43%), rgb(255 255 255 / 60%)), url(assets/images/food.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 500px;
+    background-position: center;
+  }
+
   .inactiveLink {
     pointer-events: none;
     cursor: default;
@@ -89,6 +97,32 @@ body {
     font-size: 18px;
     border-radius: 0px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  .explore5{
+    min-width:200px;
+    text-decoration:none;
+    font-size: 18px !important;
+    background-color: #f0b908;
+    color: white;
+    font-weight: bold;
+    border-radius: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .explore4{
+    color:red;
+    min-width:200px;
+    text-decoration:underline;
+    font-size: 25px;
+    border-radius: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .explore5:hover{
+    color: red;
+  }
+  .explore4:hover {
+    color: green;
   }
 
   .explore2:hover{
