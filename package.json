@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
+    "preinstall": "npm install -g angular-cli",
+    "postinstall": "ng build && mv dist/* ."
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
