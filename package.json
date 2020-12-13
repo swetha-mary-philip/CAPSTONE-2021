@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node index.js",
     "heroku-postbuild": "cd APP_FRONTEND/restaurant && npm install",
-    "postinstall": "cd APP_FRONTEND/restaurant && ng serve --aot -prod"
+    "postinstall": "cd APP_FRONTEND/restaurant && nohup ng build --aot -prod"
   },
   "dependencies": {
     "@angular/cli": "^11.0.4",
