@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "heroku-postbuild": "cd APP_FRONTEND/restaurant && npm install",
-    "postinstall": "ng build --aot -prod"
+    "postinstall": "cd APP_FRONTEND/restaurant && ng serve --aot -prod"
   },
   "dependencies": {
     "@angular/cli": "^11.0.4",
