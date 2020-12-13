@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd APP_FRONTEND/restaurant && npm install",
-    "postinstall": "cd APP_FRONTEND/restaurant && ng build --aot -prod"
+    "postinstall": "cd APP_FRONTEND/restaurant && ng update --all && ng build --aot -prod"
   },
   "dependencies": {
     "@angular/cli": "^11.0.4",
