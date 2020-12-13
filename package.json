@@ -5,6 +5,8 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "preinstall": "npm install -g angular-cli"
+    "postinstall": "node index.js"
+    "postinstall": "cd APP_FRONTEND/restaurant && ng build && ng serve"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
