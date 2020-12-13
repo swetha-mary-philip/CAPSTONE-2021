@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@angular/cli": "^11.0.4",
-    "@angular/compiler": "~10.1.5",
+    "@angular/compiler": "~10.1.6",
     "@angular/compiler-cli": "^10.2.3",
     "@angular/core": "^10.1.6",
     "@angular/forms": "~10.1.5",
