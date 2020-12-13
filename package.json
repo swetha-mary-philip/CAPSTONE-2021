@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "preinstall": "npm install -g angular-cli",
-    "postinstall": "node index.js && cd APP_FRONTEND/restaurant && ng build && ng serve"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "@angular/cli": "^11.0.4",
