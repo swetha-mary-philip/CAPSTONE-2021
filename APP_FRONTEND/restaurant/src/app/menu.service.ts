@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Menu,UserRegister, UserLogin, UserToken, Customer, Order} from './menu'
+import { Menu,UserRegister, UserLogin, UserToken, Customer, Order, Review} from './menu'
 import { HttpClient, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @Injectable({
@@ -12,7 +12,9 @@ export class MenuService {
   private customerUrl = "http://localhost:3000/api/customer" // saving customer
   private orderUrl = "http://localhost:3000/api/orders" // saving Order
   private menuItemfilterUrl  = 'http://localhost:3000/api/menu/substance/search'; 
+  private customerOrdersUrl  = 'http://localhost:3000/api/orders/customer/search';// getting all customer orders
   private userRegisterUrl  = 'http://localhost:4000/user/signup'; 
+  private foodsUrlReview  = 'http://localhost:3000/api/reviews'; // for cuisine collection
   constructor(private http:HttpClient) {  }
 
 // to get the food list
@@ -77,9 +79,36 @@ createCustomer(cust: Customer): Promise<void | Customer>{
 createOrder(ord: Order): Promise<void | Order>{
   return this.http.post(this.orderUrl, ord)
   .toPromise().then(response => {localStorage.removeItem('amount'); localStorage.removeItem('cartItems'); 
-  window.location.href = "/success"})
+  window.location.href = "/success"
+})
   .catch(this.handleError);
 }
+
+//Get customer orders
+GetCustomerOrders(searchstring: string): Promise<void | Order[]>{
+  return this.http.get(this.customerOrdersUrl + '/' + searchstring).toPromise()
+  .then(response => response as Order[]).catch(this.handleError);
+}
+
+
+
+  // to get the food reviews
+getFoodReviews(foodId: string) : Promise<void | Review[]>
+  {
+    return this.http.get(this.foodsUrlReview + '/' + foodId).toPromise()
+    .then(response => response as Review[]).catch(this.handleError);
+  }
+
+  // to get the food reviews
+createFoodReview(review: Review, foodId: string) : Promise<void | Review>
+  {
+    console.log(review);
+    return this.http.post(this.foodsUrlReview + '/' + foodId, review)
+    .toPromise().then(response => {window.location.href = "/customerorders"})
+    .catch(this.handleError);
+  }
+
+
 
 // LOGIN/REGISTER
 
@@ -90,9 +119,9 @@ tokendata: UserToken;
     return this.http.post(this.userLoginUrl, logindata)
     .toPromise()
     .then((response: UserToken)=>{
-      console.log(response);
       this.tokendata = response;
       sessionStorage.setItem('attempt', "3");
+      sessionStorage.setItem('email', logindata.email);
       sessionStorage.setItem('usertoken', this.tokendata.token);
       console.log(this.tokendata.token);
       window.location.href = "/menu";
@@ -108,7 +137,7 @@ tokendata: UserToken;
       //this.tokendata = response;
       
       sessionStorage.setItem('attempt', "3");
-      window.location.href = "/login";
+      //window.location.href = "/success";
   })
     .catch(this.handleError);
   }
@@ -118,10 +147,10 @@ tokendata: UserToken;
   console.log(error);
 
   if(error.error.msg == "User Already Exists"){
-    alert("User Already Exists");
+    //alert("User Already Exists");
     //window.location.href = "/register"
   }
-  else {
+  else if(error.errors[0].message == "Please enter a valid password") {
     alert("Please enter a valid password. Minimum length = 6");
   }
   

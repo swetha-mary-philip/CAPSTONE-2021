@@ -9,6 +9,27 @@ $(document).ready(function() {
       itemList.items = JSON.parse(localStorage.getItem('cartItems') || JSON.stringify(itemList.items));
   }
 
+  $(document).on("click", ".ratinglink", function() {
+    var x = sessionStorage.getItem("usertoken");
+    
+        $("#writereview").hide();
+    
+  });
+
+  $("#logout").click(function() {
+    sessionStorage.removeItem("usertoken");
+    sessionStorage.removeItem("email");
+    window.location.href = "/";
+});
+
+  function disableEmail(){
+    
+      var x = sessionStorage.getItem("email");
+      if (x != undefined && x != null  && x != ""){
+          $("#email").val(x);
+      }
+  }
+
   $(document).on("click", "#updatecart", function() {
       var data = getLocatStoragedata();
       var newquan = $(this).siblings('#quan').val();
@@ -73,9 +94,30 @@ $(document).ready(function() {
     $("#paypal_section").show();
   });
 
+  function managemenu(){
+      let x = sessionStorage.getItem("email");
+      if (x != undefined && x != null  && x != ""){
+          //$("#email").val(x);
+          $("#orders").show();
+          $("#logout").show();
+          $("#login").hide();
+          $("#foodname").prop("disabled", false);
+      }
+      else{
+        $("#orders").hide();
+        $("#logout").hide();
+        $("#login").show();
+        $("#btnaddnewfood").hide();
+        $("#foodname").prop("disabled", true);
+       
+      }
+  }
 
   function backgroundrender() {
       getStorageData();
+      disableEmail();
+      managemenu();
+
       $(".cart-text").text(itemList.items.length);
       if(itemList.items.length == 0 || itemList.items.length == undefined)
        $("#checkout").hide();
@@ -90,6 +132,7 @@ $(document).ready(function() {
           $(".navbar").attr('style', 'background-color: transparent');
       }
   }
+  
   backgroundrender();
 
   $(".otherpage").click(function() {
@@ -100,11 +143,6 @@ $(document).ready(function() {
   document.getElementById("searchstring").addEventListener("search", function(event) {
       window.location.reload();
 
-  });
-
-  $("#logout").click(function() {
-      sessionStorage.removeItem("usertoken");
-      window.location.href = "/";
   });
 
 

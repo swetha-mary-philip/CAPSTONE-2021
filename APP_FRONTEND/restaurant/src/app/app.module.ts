@@ -25,6 +25,8 @@ import { NewMenuComponent } from './new-menu/new-menu.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     NewMenuComponent,
     CheckoutComponent,
     ContactComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    CustomerOrdersComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +101,15 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
               {
                 path: 'success', // the home page
                 component : OrderSuccessComponent
-                }
+                },
+                {
+                  path: 'customerorders', // the customer order page
+                  component : CustomerOrdersComponent
+                  },
+                  {
+                    path: 'review/:_id', // review each item
+                    component : ReviewComponent
+                    }
     ])
   ],
   providers: [{provide:APP_BASE_HREF, useValue: '/'},{

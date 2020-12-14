@@ -57,7 +57,9 @@ export class Order{
     special_instructions: string;
     paymentType : string;
     amount: number;
+    orderdate: Date;
     customer_id : string;
+    email : string;
     order_details : orderList[];
 }
 
@@ -66,4 +68,14 @@ export class orderList{
     name: string;
     quantity: number;
     Menu_item_id: string;
+    imageurl : string;
+}
+
+export class Review {
+    _id : string;
+    reviewername: String;
+    reviewcomment: String;
+    menuid : String;
+    rating : Number;
+    reviewdate: Date;
 }

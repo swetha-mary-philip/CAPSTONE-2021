@@ -27,9 +27,9 @@
                     </div>
                     <br>
                     <div class="form-group" [ngClass]="displayFieldCss('email')">
-                        <label for="email" class="control-label">Email Id: </label>
+                        <label for="email" class="control-label"><span class="required1">*</span>Email Id: </label>
 
-                        <input type="email" class="form-control" formControlName="email" ngmodel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email" name="email">
+                        <input type="email" class="form-control control-label.required" formControlName="email" ngmodel pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required disabled = {{isdisabled}} id="email" name="email">
                         <app-field-error-display [displayError]="isFieldValid('email')"
                         errorMsg="Please enter a valid email">
                         </app-field-error-display>
@@ -85,6 +85,7 @@
                         <label for="special_instructions">Special Instructions</label>
                         <textarea formControlName="special_instructions" class="form-control" id="special_instructions" type="text" name="special_instructions" minlength="2"></textarea>
                     </div>
+ 
                     
                     <button id="proceed" type="button" class="btn btn-success" [disabled]="!orderForm.valid">Proceed to Pay</button>
                 </div>

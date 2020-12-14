@@ -3,7 +3,8 @@ var mongoose = require('mongoose');
 var orderdetailsList = new mongoose.Schema({
     name : {type: String, required: true},
     quantity: {type: Number, required: true},
-    Menu_item_id:{type : mongoose.Schema.Types.ObjectId, ref : 'Menu'}
+    Menu_item_id:{type : mongoose.Schema.Types.ObjectId, ref : 'Menu'},
+    imageurl : {type: String, required: true}
 });
 
 var paymentdetails = new mongoose.Schema({
@@ -22,7 +23,8 @@ var orderSchema = new mongoose.Schema({
    status: {type:String, enum:['Ordered','Delivered','Cancelled']},
    order_type: {type:String, enum:['Dine-in','Delivery']},
    special_instructions:{type:String},
-   paymentType : {type: String, enum:['paypal']}
+   paymentType : {type: String, enum:['paypal']},
+   email :{type: String}
    //payment : [paymentdetails]
 });
 

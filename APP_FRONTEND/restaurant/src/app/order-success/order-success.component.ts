@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSuccessComponent implements OnInit {
 
+
+  useremail : any;
+
   constructor() { }
 
   ngOnInit(): void {
+
+    this.useremail = sessionStorage.getItem("orderemail");
   }
 
 }

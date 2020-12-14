@@ -13,19 +13,20 @@
                     <div class="card-body text-justify">
                         <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
                         <br><br>
-                        <a id="foodname"  class="bak-white h4 editclick" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
+                        <a id="foodname"  class="bak-white h4" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
+                       
                         <br><br>
                         <p class="bak-white">{{food.description}}</p>
                         <p  class="bak-white"><b>Price: </b>$ {{food.price}} CAD</p>
                         <input id="foodprice" type="hidden" value= {{food.price}}>
-                        <p class="bak-white"><b>Rating: </b><span *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p>
+                        <a class="ratinglink"  [routerLink] ="['/review', food._id]" ><p class="bak-white"><b>Rating: </b><span *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p></a>
                        <input id="foodid" type="hidden" value= {{food._id}}>
                     </div>
                     
                     <div class="card-footer">
                         <div id="addtocart" class="btn-success btn text-uppercase"
                         aria-label={{food.name}}>ADD TO CART &nbsp;&nbsp;&nbsp;</div>
-                        <input class="btn text-uppercase border" value="0" required min=0 max=10 type="number">
+                        <input class="btn text-uppercase border" value="1" required min=0 max=10 type="number">
                       
                     </div>
                 </div>

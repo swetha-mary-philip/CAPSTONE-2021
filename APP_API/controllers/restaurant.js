@@ -393,6 +393,27 @@ const getsingleorder = function (req, res){
 
 };
 
+
+const getcustomerorders = function (req, res){
+    console.log(req.params.email);
+    let emailid = req.params.email;
+  
+    Order.find( { email : { $eq : emailid} }).sort({orderdate: 'descending'}).exec(function(err,orderdata){  
+        if(err){
+            res
+            .status(404)
+            .json(err);
+            return;
+        }
+        
+        res
+        .status(200)
+        .json(orderdata);
+    });
+
+};
+
+
 const createorder = function (req, res){
 
     Order.create({
@@ -403,7 +424,9 @@ const createorder = function (req, res){
         paymentType:req.body.paymentType,
         amount:req.body.amount,
         customer_id: moongose.Types.ObjectId(req.body.customer_id),
-        order_details: req.body.order_details     
+        order_details: req.body.order_details,
+        email: req.body.email,
+        imageurl: req.body.imageurl   
     }, 
     (err,orderData) =>{
         if(err){
@@ -417,20 +440,27 @@ const createorder = function (req, res){
 
 //REVIEWS
 const getreviews = function (req, res){
-    
-    Review.find().exec(function(err,data){
+    let id = req.params.menuid;
+    Review.aggregate([
+        {$match : {menuid : moongose.Types.ObjectId(id)}}
+    ]).exec(function(err, menudata) {
         if(err){
-            res.status(404).json(err);
+            res
+            .status(404)
+            .json(err);
             return;
         }
-        res.status(200).json(data);
+        
+        res
+        .status(200)
+        .json(menudata);
+    });
 
-    })
 };
 
 const AddReview = function(req,res){
   
-    if(!req.params.orderid){
+    if(!req.params.menuid){
         res
         .status(404)
         .json({"message": "not found, foodid is required"});
@@ -441,7 +471,7 @@ const AddReview = function(req,res){
         reviewername :req.body.reviewername,
         reviewcomment: req.body.reviewcomment,
         rating:req.body.rating,
-        orderid: moongose.Types.ObjectId(req.params.orderid),
+        menuid: moongose.Types.ObjectId(req.body.menuid),
         reviewdate:  Date.now(),
     }, 
     (err,foodData) =>{
@@ -488,5 +518,5 @@ const AddContact = function(req,res){
 module.exports = {getMenus,getavailability,createavailability,updateavailability,getreservations, 
                     createcustomer, updatecustomer,getcustomer, deletemenu, getfilteredmenu,
                     getorders,getsingleorder, getsinglemenu, cancelorder, createorder,getreviews,AddReview,
-                    createmenu,updatemenu,getcontacts,AddContact};
+                    createmenu,updatemenu,getcontacts,AddContact,getcustomerorders};
 

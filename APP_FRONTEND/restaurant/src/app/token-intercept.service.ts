@@ -13,18 +13,21 @@ import {HttpClient,HttpHeaders,HTTP_INTERCEPTORS, HttpInterceptor} from '@angula
 
    intercept(req,next){
      var x = sessionStorage.getItem("usertoken")
-     console.log(req.url.indexOf('user'));
+     //console.log(req.url.indexOf('orders/customer'));
 
-     if(req.method != "GET" && req.url.indexOf('user') == -1  && req.url.indexOf('reviews') == -1 
-          && req.url.indexOf('customer') == -1 && req.url.indexOf('orders') == -1)
+     if((req.url.indexOf('orders/customer') > 0 || (req.method != "GET"  && req.url.indexOf('menu') >0) || (req.url.indexOf('review') && req.method == "POST")) 
+        && req.url.indexOf('user') == -1)
     {
-     let tokenrequest = req.clone({
-       setHeaders:{
-         token: x
-       }
-     }) 
-     console.log(tokenrequest);
-    return next.handle(tokenrequest)
+    
+        console.log("inside");
+        let tokenrequest = req.clone({
+          setHeaders:{
+            token: x
+          }
+        }) 
+        //console.log(tokenrequest);
+        return next.handle(tokenrequest)
+    
      }
      return next.handle(req)
 

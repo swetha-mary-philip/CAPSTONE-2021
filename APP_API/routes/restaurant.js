@@ -20,10 +20,12 @@ router.put('/customer/:custid', ctrlMain.updatecustomer);
 
 
 // ORDERS
-router.get('/order', ctrlMain.getorders);
+router.get('/orders', ctrlMain.getorders);
 router.post('/orders', ctrlMain.createorder);
-router.get('/order/:orderid',  ctrlMain.getsingleorder);
-router.put('/order/:orderid', ctrlMain.cancelorder);
+router.get('/orders/:orderid',  ctrlMain.getsingleorder);
+router.put('/orders/:orderid', ctrlMain.cancelorder);
+router.get('/orders/customer/search/:email/', auth, ctrlMain.getcustomerorders);
+
 
 
 //RESERVATION
@@ -36,8 +38,8 @@ router.get('/reservations', ctrlMain.getreservations);
 
 
 //REVIEW
-router.get('/reviews',  ctrlMain.getreviews);
-router.post('/reviews/:orderid', ctrlMain.AddReview);
+router.get('/reviews/:menuid',  ctrlMain.getreviews);
+router.post('/reviews/:menuid',auth, ctrlMain.AddReview);
 
 //CONTACT
 router.get('/contacts',  ctrlMain.getcontacts);

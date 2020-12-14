@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-sm-7 about-text">
+            <h1 style="margin-bottom: 20px;" class="abouttitle text-center">Reviews</h1>
+            <div  *ngFor= "let review of reviews;">
+                <div>
+                    <p>
+                        <span *ngFor='let in of counter(review.rating) ;let i = index' class="fa fa-star basic checked"></span>
+                    </p>               
+                <p>{{review.reviewcomment}}</p>
+                <p class="pull-right"><small><em> - {{review.reviewername}}, {{review.reviewdate| date:'yyyy-MM-dd'}}</em></small></p>
+                <br>
+                <hr>
+               </div>
+            </div>
+             </div>
+        <div id="writereview" class="col-md-5 col-xs-12 text-center" style="margin-top: 50px;">
+            <div>
+                <form class="form-horizontal" (ngSubmit)="reviewrecipe(reviewdata)" style="padding-top:20px" [formGroup]="form">
+                    <div class="form-group" [ngClass]="displayFieldCss('reviewername')">
+                        <div class="col-sm-12">
+                            <label style="margin-right: 10px;" for="reviewername" class="control-label required">Name</label>
+                            <input style="margin-right: 12px;" type="text" id="reviewername" class="form-control control-label.required" formControlName="reviewername" [(ngModel)]="reviewdata.reviewername" required>
+                            <app-field-error-display 
+                            [displayError]="isFieldValid('reviewername')"
+                            errorMsg="Please enter your name">
+                            </app-field-error-display>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" [ngClass]="displayFieldCss('reviewcomment')">
+                        <div class="col-sm-12">
+                            <label for="reviewcomment" class="control-label required">Comment</label>
+                            <textarea style="margin-right: 10px;" maxlength="500" minlength="10"  id="reviewcomment" 
+                            class="form-control control-label.required" [(ngModel)]="reviewdata.reviewcomment" formControlName="reviewcomment"></textarea>
+                            <app-field-error-display 
+                            [displayError]="isFieldValid('reviewcomment')"
+                             errorMsg="Please enter minimum 10 characters">
+                            </app-field-error-display>
+                        </div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="displayFieldCss('rating')">
+                        <div class="col-sm-12">
+                            <label style="margin-right: 10px;" for="reviewername" class="control-label required">Rating</label>
+                            <input style="margin-right: 12px;" type="number" min="0" max="5" id="rating" class="form-control control-label.required" formControlName="rating" [(ngModel)]="reviewdata.rating" required>
+                            <app-field-error-display 
+                            [displayError]="isFieldValid('rating')"
+                            errorMsg="Please enter your rating">
+                            </app-field-error-display>
+                        </div>
+                    </div>
+                    <button class="btn btn-success" href="#" type="submit" style="margin-left:80px;" [disabled]="!form.valid"> Submit </button>
+    
+                </form>
+            </div>
+            <div class="portrait">
+                <img class="img-responsive fit-image" src="../../assets/images/ingredients.png" />
+            </div>
+        </div>
+    </div>
+
+</div>

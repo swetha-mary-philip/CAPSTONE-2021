@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewChecked, Input, Type } from '@angular/core';
-import { Customer, Order} from '../menu';
+import { Customer, Order, UserRegister,UserToken} from '../menu';
 import { MenuService} from "../menu.service";
 import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 
@@ -17,7 +17,10 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
   paypalLoad : boolean = true;
   finalAmount : number;
   foodDetails : any;
+  useremail : string;
   orderForm: FormGroup;
+  isdisabled: boolean = false;
+
 
   constructor(private fb: FormBuilder,private orderService: MenuService) { }
 
@@ -44,7 +47,18 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
     },
     onAuthorize: (data, actions) =>{
       return actions.payment.execute().then((payment)=> {
-        this.SaveOrder();
+       
+        if(this.useremail != "" && this.useremail != null)
+        {
+        sessionStorage.setItem("orderemail", this.useremail);
+        console.log("SaveOrderOnly");
+        this.SaveOrderOnly();
+        }
+        else{
+          sessionStorage.setItem("orderemail", this.orderForm.value.email);
+          console.log("SaveOrder");
+          this.SaveOrder();
+        }
       })
     }
   };
@@ -71,6 +85,7 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
 
   
   ngOnInit(): void {
+    
 
     this.orderForm = this.fb.group({
       _id: "",
@@ -89,21 +104,25 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
    
     this.foodDetails=  JSON.parse(localStorage.getItem("cartItems"));
     this.finalAmount=  JSON.parse(localStorage.getItem("amount"));
-    console.log(this.foodDetails);
+    this.useremail=  sessionStorage.getItem("email");
+    console.log(this.useremail);
+    if(this.useremail != "" && this.useremail != null){
+      this.isdisabled = true;
+    }
+       
   }
 
   public SaveOrder(): void{
 
-  
-
-    //forming the json to be passed as request
+  //forming the json to be passed as request
   var orderitems=[];
   
     for(var i =0; i< this.foodDetails.length; i++ ){
    orderitems.push({
     "name": this.foodDetails[i].itemName, 
     "quantity": this.foodDetails[i].quantity, 
-    "Menu_item_id": this.foodDetails[i].item_id
+    "Menu_item_id": this.foodDetails[i].item_id,
+    "imageurl" : this.foodDetails[i].itemImage
     })   
     }
   
@@ -124,27 +143,97 @@ export class CheckoutComponent implements AfterViewChecked, OnInit {
      }]
      };
 
+     var registerdata: UserRegister = {
+      "_id":'',
+      "email": this.orderForm.value.email,
+      "password": 'Bon123',
+      "username": this.orderForm.value.firstname
+    };
 
+  
     //invoking the createfood methof in food service
 
-   this.orderService.createCustomer(data)
-   .then((response: Customer)=>{
-     console.log(response);
-    var Order: Order={
-      "_id": "", 
-     "status": "Ordered",
-     "order_type" : "Delivery",
-     "special_instructions" : this.orderForm.value.special_instructions,
-     "paymentType" : "paypal",
-     "amount": this.finalAmount,
-     "customer_id": response._id,
-     "order_details" : orderitems
-     };
-     this.orderService.createOrder(Order);
+    this.orderService.userRegister(registerdata).then((Response: UserToken)=>{
+      this.orderService.createCustomer(data)
+      .then((response: Customer)=>{
+        console.log(response);
+       var Order: Order={
+         "_id": "", 
+        "status": "Ordered",
+        "order_type" : "Delivery",
+        "special_instructions" : this.orderForm.value.special_instructions,
+        "paymentType" : "paypal",
+        "amount": this.finalAmount,
+        "customer_id": response._id,
+        "order_details" : orderitems,
+        "email": this.orderForm.value.email,
+        "orderdate" : null
+        };
+        this.orderService.createOrder(Order)
+    })
+
  });
 
 
     }
+  
+  public SaveOrderOnly(): void{
+
+  
+
+      //forming the json to be passed as request
+    var orderitems=[];
+    
+      for(var i =0; i< this.foodDetails.length; i++ ){
+      orderitems.push({
+      "name": this.foodDetails[i].itemName, 
+      "quantity": this.foodDetails[i].quantity, 
+      "Menu_item_id": this.foodDetails[i].item_id,
+      "imageurl" : this.foodDetails[i].itemImage
+      })   
+      }
+    
+      
+      var data: Customer={
+        "_id": this.orderForm.value._id, 
+       "firstname": this.orderForm.value.firstname,
+       "lastname" : this.orderForm.value.lastname,
+       "email" : this.useremail,
+       "phone" : this.orderForm.value.phone,
+       "address" : [{
+        "addressline1": this.orderForm.value.addressline1,
+        "addressline2": this.orderForm.value.addressline2,
+        "city": this.orderForm.value.city,
+        "zipcode": this.orderForm.value.zipcode,
+        "province": this.orderForm.value.province,
+        "country": this.orderForm.value.country
+       }]
+       };
+  
+    
+      //invoking the createfood methof in food service
+  
+     this.orderService.createCustomer(data)
+     .then((response: Customer)=>{
+       console.log(response);
+      var Order: Order={
+        "_id": "", 
+       "status": "Ordered",
+       "order_type" : "Delivery",
+       "special_instructions" : this.orderForm.value.special_instructions,
+       "paymentType" : "paypal",
+       "amount": this.finalAmount,
+       "customer_id": response._id,
+       "order_details" : orderitems,
+       "email": this.useremail,
+       "orderdate" : null
+       };
+       this.orderService.createOrder(Order)
+   });
+  
+  
+      }
+    
 
   isFieldValid(field: string) {
     return !this.orderForm.get(field).valid && this.orderForm.get(field).touched;
