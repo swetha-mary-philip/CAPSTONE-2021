@@ -11,7 +11,7 @@
             <div class="col-md-4" style="padding-top:50px;padding-bottom:20px" *ngFor= "let food of menuitems;">
                 <div class="card border-0 rounded-0">
                     <div class="card-body text-justify">
-                        <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
+                        <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/food.jpg';">
                         <br><br>
                         <a id="foodname"  class="bak-white h4" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
                        

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <h1 style="margin-bottom: 20px;" class="abouttitle text-center">Reviews</h1>
-        <div class="col-sm-7 about-text">
+        <div class="col-sm-6 about-text" style="padding-top:20px">
            
             <div  *ngFor= "let review of reviews;">
                 <div>
@@ -10,12 +10,12 @@
                     </p>               
                 <p>{{review.reviewcomment}}</p>
                 <p class="pull-right"><small><em> - {{review.reviewername}}, {{review.reviewdate| date:'yyyy-MM-dd'}}</em></small></p>
-                <br>
+               
                 <hr>
                </div>
             </div>
              </div>
-        <div id="writereview" class="col-md-5 col-xs-12 text-center" style="margin-top: 50px;">
+        <div id="writereview" class="col-md-6 col-xs-12 text-center">
             <div>
                 <form class="form-horizontal" (ngSubmit)="reviewrecipe(reviewdata)" style="padding-top:20px" [formGroup]="form">
                     <div class="form-group" [ngClass]="displayFieldCss('reviewername')">
