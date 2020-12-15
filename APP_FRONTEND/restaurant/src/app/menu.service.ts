@@ -149,6 +149,7 @@ tokendata: UserToken;
   if(error.error.msg == "User Already Exists"){
     //alert("User Already Exists");
     //window.location.href = "/register"
+    return;
   }
   else if(error.errors[0].message == "Please enter a valid password") {
     alert("Please enter a valid password. Minimum length = 6");

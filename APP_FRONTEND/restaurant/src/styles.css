@@ -85,9 +85,11 @@ body {
     text-decoration:none;
     font-size: 18px;
     background-color: white;
-    color: darkgray;
+    color: #504e4e;
     border-radius: 0px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: -3px 3px #52504b, -2px 2px #52504b, -1px 1px #52504b;
+    border: 1px solid #52504b;
   }
 
   .explore2{
