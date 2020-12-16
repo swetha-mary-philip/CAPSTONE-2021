@@ -6,15 +6,16 @@
     
     <div style="clear: both;">
         <hr style="border-top:2px solid #f0b908; padding-top: 2px;"/>
-    <div class="col-md-6" *ngFor= "let food of foodDetails;">
+    <div class="col-md-4" *ngFor= "let food of foodDetails;">
         <div class="card border-0 rounded-0">
             <div class="card-body text-justify">
 
             <div class="col-sm-5 text-center" style="padding:15px;">
-                <img class="img-fluid pb-3 list-img" src= {{food.itemImage}} alt= {{food.itemName}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
+                <img class="img-fluid pb-3 list-img-order" src= {{food.itemImage}} alt= {{food.itemName}} onerror="this.onerror=null;this.src='../../assets/images/defaultfood.jpg';">
                
             </div>
             <div class="col-sm-7" style="padding:15px;">
+                <a id="deleteitem" class="btn border-danger danger pull-right" aria-label="remove item from cart">X</a>
                 <h5 class="bak-white" style="font-weight:bold;">{{food.itemName}}</h5>
                 <label><b>Quantity: </b></label>
                 <input id="quan" type="number" value= {{food.quantity}}>
@@ -22,8 +23,8 @@
                 <p class="bak-white"><b>Total Price: </b>$ {{food.itemPrice}} CAD</p>
                 <input id="total" type="hidden" value= {{food.itemPrice}}>
                 <input id="foodguid" type="hidden" value= {{food.ItemID}}>
-                <a id="updatecart" class="btn btn-primary updatecart">Update Cart</a>
-                <a id="deleteitem" class="btn btn-danger deleteitem" style="margin-left: 10px;">Remove</a>
+                <a id="updatecart" class="btn btn-primary updatecart">Update Cart</a><br><br>
+                <!-- <a id="deleteitem" class="btn btn-danger deleteitem" style="margin-left: 10px;">Remove</a> -->
             </div>
             </div>
             </div>

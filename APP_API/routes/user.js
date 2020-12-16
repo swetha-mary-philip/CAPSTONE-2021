@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../../APP_SERVER/models/user");
 const auth = require('../../middleware/auth');
+const nodemailer = require('nodemailer');
 /**
  * @method - POST
  * @param - /signup
@@ -65,6 +66,9 @@ router.post(
                     res.status(200).json({
                         token
                     });
+                    sendMail(user, info =>{
+                      console.log(info);
+                  })
                 }
             );
         } catch (err) {
@@ -73,6 +77,30 @@ router.post(
         }
     }
 );
+
+
+async function sendMail(user, callback){
+
+  let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+          user : "smp5993",
+          pass: "Swagat@1988"
+      }
+  });
+
+let mailoptions ={
+  from: "Bon Appetit",
+  to: user.email,
+  subject: "welcome",
+  html: `<h2>Welcome ${user.username} !!</h2><p>Your Login Details are:<br>login-email : ${user.email}<br>Password: Bon123</p><p>Please Login : <a href= 'http://localhost:4200/login'>here</a><p>`
+};
+
+let info = await transporter.sendMail(mailoptions);
+callback(info);
+}
 
 router.post(
     "/login",

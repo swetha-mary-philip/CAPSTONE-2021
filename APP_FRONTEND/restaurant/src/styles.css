@@ -6,7 +6,7 @@ body {
     background-color: #f5f5f5;
   }
 
-  .bodyimage{
+  .bodyimage1{
     background-color: #f5f5f5;
     background: linear-gradient(rgba(2, 2, 2, 0.4), rgba(10, 10, 10, 0.6)), url(assets/images/back1.jpg);
     background-size: cover;
@@ -38,6 +38,7 @@ body {
     background-repeat: no-repeat;
     min-height: 500px;
     background-position: center;
+    width: 100%;
   }
 
   .inactiveLink {
@@ -46,12 +47,35 @@ body {
  }
 
   .nav>li>a:focus, .nav>li>a:hover{
-    background-color: transparent;
+    background-color:transparent;
+    color: red;
+  }
+  .bg-theme{
+    background-color: #f0b908;
+  }
+
+  .bg-dark{
+    background-color: black;
+  } 
+  .text-white {
+    color: white;
+  }
+  .bg-danger{
+    background-color: red;
     color: white;
   }
 
-  .navli:focus, .navli:hover{
-    border: 2px solid white;
+  .danger{
+    color: red;
+    font-weight: bold;
+  }
+  .danger:hover{
+    background-color: lightcoral;
+    font-weight: bolder;
+  }
+
+  .border-danger{
+    border: 1px solid red;
   }
 
   .indexpage1{

@@ -1,30 +1,32 @@
 <div class="container">
     <h1 class="abouttitle text-center" style="margin-bottom: 0px;">Order History</h1>
     <div class="col-md-12" *ngFor= "let food of menuitems;">
+        <div class="col-12">
         <hr style="border-top:2px solid #f0b908; padding-top: 1px;"/>
-    <div class="bg-warning" style="padding:5px;margin-top: 10px; color: black">
-       <h4 class="pull-right bg-success"><b><u>Order Date</u></b>:  {{food.orderdate | date: 'dd/MM/yyyy'}}</h4>
-       <p class=""><small><b>Amount :</b> {{food.amount}}</small></p>
-       <p class=""><small><b>Status :</b> {{food.status}}</small></p>
-       <p class=""><small><b>Payment Mode :</b> {{food.paymentType}}</small></p>
-     
+        <div class="bg-warning" style="padding:5px;margin-top: 10px; color: black">
+        <h4 class="pull-right bg-success"><b><u>Order Date</u></b>:  {{food.orderdate | date: 'dd/MM/yyyy'}}</h4>
+        <p class=""><small><b>Amount :</b> {{food.amount}}</small></p>
+        <p class=""><small><b>Status :</b> {{food.status}}</small></p>
+        <p class=""><small><b>Payment Mode :</b> {{food.paymentType}}</small></p>
+        
+        </div>
     </div>
     
-    <div class="col-md-4" *ngFor= "let details of food.order_details;">
+    <div class="col-md-4 text-center" *ngFor= "let details of food.order_details;">
         <div class="card border-0 rounded-0">
             <div class="card-body">
 
-            <div class="col-sm-5" style="padding:5px;">
+            <div class="col-md-5" style="padding:5px;">
                 <img class="img-fluid pb-3 list-img-order" src= {{details.imageurl}} alt= {{details.name}} onerror="this.onerror=null;this.src='../../assets/images/food.jpg';">
                
             </div>
-            <div class="col-sm-7" style="padding:20px;">
+            <div class="col-md-7" style="padding:20px;">
                 <h5 class="bak-white" style="font-weight:bold;">{{details.name}}</h5>
                 <label><b>Quantity:  {{details.quantity}}</b></label><br>
                 <a id="foodreview"  class=" btn btn-primary" style="font-weight:bold;" [routerLink] ="['/review', details.Menu_item_id]">Add Review</a>
             </div>
-            </div>
-            </div>
+        </div>
+        </div>
         
     </div>
    

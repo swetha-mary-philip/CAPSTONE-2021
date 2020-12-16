@@ -1,8 +1,8 @@
 <div class="container">
-    <h1 class="abouttitle text-center">Place Order</h1>
+    <h1 class="abouttitle text-center mb-3">Place Order</h1>
     <div class="row">
             <form #newfood="ngForm" [formGroup]="orderForm" (ngSubmit)="SaveOrder()">
-                <div class="col-sm-6 text-center">
+                <div class="col-sm-6">
 
                     <div class="form-group" [ngClass]="displayFieldCss('firstname')">
                         <label class="control-label" for="firstname"><span class="required1">*</span>First Name</label>
@@ -51,7 +51,7 @@
                         </app-field-error-display>
                     </div>
                 </div>
-                <div class="col-sm-6 text-center">
+                <div class="col-sm-6">
                     <div class="form-group" [ngClass]="displayFieldCss('addressline1')">
                         <label for="addressline1" class="control-label"><span class="required1">*</span>Address Line 1: </label>
                         <input formControlName="addressline1" class="form-control  control-label.required" id="inputaddressline1" type="text" required name="addressline1" placeholder="Address Line 1" minlength="5">
@@ -84,17 +84,31 @@
                     <div class="form-group" [ngClass]="displayFieldCss('special_instructions')">
                         <label for="special_instructions">Special Instructions</label>
                         <textarea formControlName="special_instructions" class="form-control" id="special_instructions" type="text" name="special_instructions" minlength="2"></textarea>
+                    </div> 
+                    <button data-target="#paypal_section" data-toggle="modal"  id="proceed" type="button" class="btn btn-success" [disabled]="!orderForm.valid">Proceed to Pay</button>
+                    <div class="modal" id="paypal_section" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header  bg-theme text-white">
+                                    <button class="close" data-dismiss="modal">x</button>
+                                    <h4><b>PAYMENT</b></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>TOTAL AMOUNT :  ${{finalAmount}} CAD</b></p>
+                                    <div id="paypal-checkout-btn">
+                                        <hr class="pull-left" width="50%" style="border-top:2px solid #f0b908;"/>
+                                    </div>
+                
+                                </div>
+                                <div></div>
+                            
+                            </div>
+                        </div>
+        
                     </div>
- 
-                    
-                    <button id="proceed" type="button" class="btn btn-success" [disabled]="!orderForm.valid">Proceed to Pay</button>
                 </div>
             </form>
-            <div id="paypal_section" class="border col-sm-12 text-center" style="display: none;">
-                <hr style="border-top:2px solid #f0b908; padding-top: 2px;"/>
-                <h4>AMOUNT: {{finalAmount}}</h4>
-                <div id="paypal-checkout-btn"></div>
-            </div>
+               
         
 
 </div>

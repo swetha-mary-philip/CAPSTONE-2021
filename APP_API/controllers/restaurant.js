@@ -8,6 +8,7 @@ const Reservation= moongose.model("Reservation");
 const Customer= moongose.model("Customer");
 const Review = moongose.model("Review");
 const Contact = moongose.model("Contact");
+const nodemailer = require('nodemailer');
 
 //MENUS
 const getMenus = function (req, res){
@@ -515,8 +516,39 @@ const AddContact = function(req,res){
 
 }
 
+const sendemail = function(req, res){
+    let user = req.body;
+    console.log(user.name);
+    sendMail(user, info =>{
+        res.status(201).json(info);
+    })
+
+}
+async function sendMail(user, callback){
+
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user : "smp5993",
+            pass: "Swagat@1988"
+        }
+    });
+
+let mailoptions ={
+    from: "Bon Appetit",
+    to: user.email,
+    subject: "welcome",
+    html: `<h1>${user.name}</h1>`
+};
+
+let info = await transporter.sendMail(mailoptions);
+callback(info);
+}
+
 module.exports = {getMenus,getavailability,createavailability,updateavailability,getreservations, 
                     createcustomer, updatecustomer,getcustomer, deletemenu, getfilteredmenu,
                     getorders,getsingleorder, getsinglemenu, cancelorder, createorder,getreviews,AddReview,
-                    createmenu,updatemenu,getcontacts,AddContact,getcustomerorders};
+                    createmenu,updatemenu,getcontacts,AddContact,getcustomerorders, sendemail};
 

@@ -3,30 +3,49 @@
     <div class="row">
         <div class="col-12 search-container">
             <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
-                <input formControlName="name" id="searchstring" type="search" placeholder="filter unwanted ingredient" name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <label hidden for="quantity">Filter Out Ingredient</label>
+                <input  aria-label="filter out ingredient" formControlName="name" id="searchstring" type="search" placeholder="filter unwanted ingredient" name="search">
+                <button type="submit"><em class="fa fa-search"></em></button>
             </form>
           </div>
           <div style="clear: both;">
-            <div class="col-md-4" style="padding-top:50px;padding-bottom:20px" *ngFor= "let food of menuitems;">
+            <div class="col-md-3" style="padding-top:50px;padding-bottom:20px" *ngFor= "let food of menuitems; let i = index;">
                 <div class="card border-0 rounded-0">
                     <div class="card-body text-justify">
-                        <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt= {{food.name}} onerror="this.onerror=null;this.src='../../assets/images/food.jpg';">
+                        <img class="img-fluid pb-3 list-img" src= {{food.imageurl}} alt='image of {{food.name}}' onerror="this.onerror=null;this.src='../../assets/images/food.jpg';">
                         <br><br>
-                        <a id="foodname"  class="bak-white h4" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}}</a>
-                       
+                        <a id="foodname"  class="bak-white h4" style="font-weight:bold;" [routerLink] ="['/update', food._id]">{{food.name}} </a>
+                        <em [attr.data-target]="'#description' + i" data-toggle="modal" class="glyphicon glyphicon-info-sign"></em>
+                       <div class="modal" id="description{{i}}" tabindex="-1">
+                           <div class="modal-dialog">
+                               <div class="modal-content">
+                                   <div class="modal-header  bg-theme text-white">
+                                       <button class="close" data-dismiss="modal">x</button>
+                                       <h4><strong>{{food.name}}</strong></h4>
+                                   </div>
+                                   <div class="modal-body">
+                                    <p class="">{{food.description}}</p> 
+                                   </div>
+                                   <div></div>
+                               
+                               </div>
+                           </div>
+
+                       </div>
                         <br><br>
-                        <p class="bak-white">{{food.description}}</p>
-                        <p  class="bak-white"><b>Price: </b>$ {{food.price}} CAD</p>
+                        <p  class="bak-white"><strong>Price: </strong>$ {{food.price}} CAD</p>
                         <input id="foodprice" type="hidden" value= {{food.price}}>
-                        <a class="ratinglink"  [routerLink] ="['/review', food._id]" ><p class="bak-white"><b>Rating: </b><span *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p></a>
-                       <input id="foodid" type="hidden" value= {{food._id}}>
+                        <a class="ratinglink"  [routerLink] ="['/review', food._id]" >
+                        <p class="bak-white"><strong>Rating: </strong><span aria-hidden="true" title= "{{food.avg_rating}}"  *ngFor='let in of counter(food.avg_rating) ;let i = index' class="fa fa-star basic checked"></span></p></a>
+                       
+                        <input id="foodid" type="hidden" value= {{food._id}}>
                     </div>
                     
                     <div class="card-footer">
                         <div id="addtocart" class="btn-success btn text-uppercase"
-                        aria-label={{food.name}}>ADD TO CART &nbsp;&nbsp;&nbsp;</div>
-                        <input class="btn text-uppercase border" value="1" required min=0 max=10 type="number">
+                        aria-label={{food.name}}>Add to cart &nbsp;&nbsp;&nbsp;</div>
+                        <label hidden for="quantity">Quantity</label>
+                        <input id="quantity"  aria-label="quantity" class="btn text-uppercase border" value="1" required min=0 max=10 type="number">
                       
                     </div>
                 </div>

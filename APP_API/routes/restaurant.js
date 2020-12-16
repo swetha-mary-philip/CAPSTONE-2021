@@ -44,4 +44,9 @@ router.post('/reviews/:menuid',auth, ctrlMain.AddReview);
 //CONTACT
 router.get('/contacts',  ctrlMain.getcontacts);
 router.post('/contacts', ctrlMain.AddContact);
+
+// EMAIL
+
+router.post('/sendemail', ctrlMain.sendemail);
+
 module.exports = router;

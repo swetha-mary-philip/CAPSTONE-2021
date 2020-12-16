@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-sm-7 text-center about-text">
+        <div class="col-sm-7 about-text">
             <h1 style="margin-bottom: 10px;" class="abouttitle text-center">User Login</h1>
             <form class="form-horizontal" (ngSubmit)="userLogin(logindata)" style="padding-top:20px" [formGroup]="form">
                 <div class="form-group" [ngClass]="displayFieldCss('email')">
@@ -25,7 +25,9 @@
                         </app-field-error-display>
                     </div>
                 </div>
-                <button class="btn btn-success" href="#" type="submit" style="margin-left:80px;" [disabled]="!form.valid"> Login </button>
+                <div class="col-md-12 text-center">
+                <button class="btn btn-success  text-center" href="#" type="submit" [disabled]="!form.valid"> Login </button>
+            </div>
                 <!-- <a style="margin-left: 10px;" routerLink="/register" class="register otherpage">Register</a> -->
 
             </form>

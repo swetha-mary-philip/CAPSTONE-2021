@@ -19,7 +19,7 @@ $(document).ready(function() {
   $("#logout").click(function() {
     sessionStorage.removeItem("usertoken");
     sessionStorage.removeItem("email");
-    window.location.href = "/";
+    window.location.href = "/home";
 });
 
   function disableEmail(){
@@ -124,11 +124,11 @@ $(document).ready(function() {
 
       var url = window.location.href;
       if (url != "http://localhost:4200/") {
-          $("#bodyimage").removeClass('bodyimage');
+          $("#bodyimg").removeClass('bodyimage1');
           $(".navbar").attr('style', 'background-color: #f0b908');
 
       } else {
-          $("#bodyimage").addClass('bodyimage');
+          $("#bodyimg").addClass('bodyimage1');
           $(".navbar").attr('style', 'background-color: transparent');
       }
   }
@@ -138,6 +138,11 @@ $(document).ready(function() {
   $(".otherpage").click(function() {
       backgroundrender();
   });
+
+  $('body').on('click.collapse-next.data-api', '[data-toggle=collapse-next]', function (e) {
+    var $target = $(this).parent().next()
+    $target.data('collapse') ? $target.collapse('toggle') : $target.collapse()
+  })
 
   // to reload the menu after seach box is empty
   document.getElementById("searchstring").addEventListener("search", function(event) {
