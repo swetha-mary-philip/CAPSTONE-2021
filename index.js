@@ -30,6 +30,6 @@ app.use("/user", user);
 /*app.listen(PORT, (req, res) => {
   console.log(`Server Started at PORT ${PORT}`);
 });*/
-app.listen(port, "0.0.0.0", function() {
+app.listen(port, function() {
 console.log("Listening on Port 3000");
 });
