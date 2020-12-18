@@ -1,1 +1,73 @@
-<p>contact works!</p>
+<div class="" id="aboutus">
+    <!-- <div>
+        <h1 class="abouttitle text-center">About Bon Appétit</h1>
+        <div class=" d-sm-none col-md-5 text-center">
+            <div class="col-sm-12 text-center"></div>
+            <img class="img-fluid px-3 text-center img-about" src="https://media.giphy.com/media/l49JF16IHPdB5zuBW/giphy.gif" alt="vegetable choppinging video" style="margin-right:20px;">
+            <div class="col-sm-12 text-center"></div>
+            <img class="img-fluid pb-3 text-center img-about" src="../../assets/images/cooking.gif" alt="cooking video"><div class="col-sm-12 text-center"></div>
+            <img class="img-fluid pb-3 text-center img-about" src="../../assets/images/serving1.gif" alt="serving food video">
+        </div>
+            <div class="col-md-7 text-center about-text" style="padding-top:10px">
+            <p>If cooking is your hobby, it will be something fun to do but not something that you let take over more and more of your life. If cooking is your passion, you'll notice that you're spending more time cooking, planning to cook, and serving that cooked food than you are other activities in your life. You'll also find that if you have to take care of tasks that are onerous but related to cooking, you'll do them instead of avoiding them.</p><p>But that passion can hit a wall if it's not given a chance to keep growing. That point is where you need to consider expanding from a home hobby cook to professional food preparation.</p><p>Choose someone in the kitchen and watch that one person for a while (if you try to watch everyone, you'll be unable to get a sense of what the job is really like). Watch how they cut, watch how they interact with others, watch how they move -- do you think you'd be able to do that for hours on end? Now choose someone else and observe them for a while, asking yourself the same question.
+            </p>
+                
+            <img class="img-fluid px-3 text-center abt-btm-img" src="../../assets/images/ingredients.png" alt="ingredients image">
+        </div>
+    </div> -->
+   
+    <div>
+        <h2 class="h1  abouttitle text-center">Contact Us</h2>
+        <div id="contactus" class="col-md-12">
+            <div class="col-md-6">
+                <div class="text-success p-5"><h4><b>{{message}}</b></h4></div>
+                <div>
+                    <form class="form-horizontal" (ngSubmit)="submitMessage(contactdata)" style="padding-top:20px" [formGroup]="form">
+                        <div class="form-group" [ngClass]="displayFieldCss('name')">
+                            <div class="col-sm-12">
+                                <label style="margin-right: 10px;" for="name" class="control-label required">Name</label>
+                                <input style="margin-right: 12px;" type="text" id="name" class="form-control control-label.required" formControlName="name" [(ngModel)]="contactdata.name" required>
+                                <app-field-error-display 
+                                [displayError]="isFieldValid('name')"
+                                errorMsg="Please enter your name">
+                                </app-field-error-display>
+                            </div>
+                        </div>
+                        <div class="form-group" [ngClass]="displayFieldCss('email')">
+                            <div class="col-sm-12">
+                                <label style="margin-right: 10px;" for="email" class="control-label required">Email</label>
+                                <input style="margin-right: 12px;" type="email" id="email" class="form-control control-label.required" formControlName="email" [(ngModel)]="contactdata.email" required>
+                                <app-field-error-display 
+                                [displayError]="isFieldValid('email')"
+                                errorMsg="Please enter a valid email">
+                                </app-field-error-display>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" [ngClass]="displayFieldCss('message')">
+                            <div class="col-sm-12">
+                                <label for="message" class="control-label required">Message</label>
+                                <textarea style="margin-right: 10px;" maxlength="500" minlength="10"  id="message" 
+                                class="form-control control-label.required" [(ngModel)]="contactdata.message" formControlName="message"></textarea>
+                                <app-field-error-display 
+                                [displayError]="isFieldValid('message')"
+                                 errorMsg="Please enter minimum 10 characters">
+                                </app-field-error-display>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center">
+                        <button class="btn btn-success" href="#" type="submit" [disabled]="!form.valid"> SEND </button>
+                    </div>
+                    </form>
+                </div>            
+            </div>
+            <div class="col-md-6 text-center mt-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2899.4002370305575!2d-80.40736348505264!3d43.38956327913121!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b9018e9e89adf%3A0x2043c24369ede07e!2sConestoga%20College!5e0!3m2!1sen!2sca!4v1608248752187!5m2!1sen!2sca" 
+                width="100%" height="400"  frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+            </div>
+           
+        </div>
+    </div>
+  
+</div>

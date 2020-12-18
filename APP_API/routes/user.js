@@ -87,7 +87,7 @@ async function sendMail(user, callback){
       secure: false,
       auth: {
           user : "smp5993",
-          pass: "Swagat@1988"
+          pass: "****"
       }
   });
 

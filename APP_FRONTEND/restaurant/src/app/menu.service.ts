@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Menu,UserRegister, UserLogin, UserToken, Customer, Order, Review} from './menu'
+import { Menu,UserRegister, UserLogin, UserToken, Customer, Order, Review, Contact} from './menu'
 import { HttpClient, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { HttpClient, HttpResponse, HTTP_INTERCEPTORS} from '@angular/common/http
 export class MenuService {
 
   private menuItemUrl  = 'http://localhost:3000/api/menu'; // for all menu collection
+  private sendEmailUrl  = 'http://localhost:3000/api/sendemail'; // send email from 
   private userLoginUrl  = 'http://localhost:4000/user/login'; 
   private customerUrl = "http://localhost:3000/api/customer" // saving customer
   private orderUrl = "http://localhost:3000/api/orders" // saving Order
@@ -90,8 +91,6 @@ GetCustomerOrders(searchstring: string): Promise<void | Order[]>{
   .then(response => response as Order[]).catch(this.handleError);
 }
 
-
-
   // to get the food reviews
 getFoodReviews(foodId: string) : Promise<void | Review[]>
   {
@@ -104,11 +103,17 @@ createFoodReview(review: Review, foodId: string) : Promise<void | Review>
   {
     console.log(review);
     return this.http.post(this.foodsUrlReview + '/' + foodId, review)
-    .toPromise().then(response => {window.location.href = "/customerorders"})
-    .catch(this.handleError);
+    .toPromise().then(response => response as Review).catch(this.handleError);
   }
 
 
+SubmitMessage(data: Contact):Promise<void | string>{
+  console.log(data);
+    return this.http.post(this.sendEmailUrl, data)
+    .toPromise().then(response => {
+      return response.toString();})
+    .catch(this.handleError);
+}
 
 // LOGIN/REGISTER
 

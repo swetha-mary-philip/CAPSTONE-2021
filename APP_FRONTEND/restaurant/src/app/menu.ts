@@ -71,6 +71,12 @@ export class orderList{
     imageurl : string;
 }
 
+export class Contact{
+    name: string;
+    email: string;
+    message: string;
+}
+
 export class Review {
     _id : string;
     reviewername: String;

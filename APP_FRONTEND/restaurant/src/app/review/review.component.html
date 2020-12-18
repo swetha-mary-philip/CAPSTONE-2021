@@ -17,6 +17,7 @@
              </div>
         <div id="writereview" class="col-md-6 col-xs-12">
             <div>
+                <div class="text-success p-5"><h4><b>{{message}}</b></h4></div>
                 <form class="form-horizontal" (ngSubmit)="reviewrecipe(reviewdata)" style="padding-top:20px" [formGroup]="form">
                     <div class="form-group" [ngClass]="displayFieldCss('reviewername')">
                         <div class="col-sm-12">
@@ -55,6 +56,7 @@
                     <button class="btn btn-success" href="#" type="submit" [disabled]="!form.valid"> Submit </button>
                 </div>
                 </form>
+
             </div>
             <!-- <div class="portrait">
                 <img class="img-responsive fit-image" src="../../assets/images/ingredients.png" />

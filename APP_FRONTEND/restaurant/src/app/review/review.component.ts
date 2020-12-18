@@ -31,6 +31,7 @@ export class ReviewComponent implements OnInit {
   };
 
   form: FormGroup;
+  message: string;
 
   constructor(private foodDataService: MenuService,
     private route: ActivatedRoute, private formBuilder: FormBuilder) { }
@@ -72,7 +73,11 @@ public reviewrecipe(reviewdata: Review): void{
     console.log(this.foodid);
 
     this.reviewdata.menuid = this.foodid;
-    this.foodDataService.createFoodReview(this.reviewdata, this.foodid);
+    this.foodDataService.createFoodReview(this.reviewdata, this.foodid).then((response: Review)=>{
+     this.message = "Review added successfully!!";
+      this.reviews.push(response);
+      this.form.reset(); 
+  });;
 
   }
 counter(i: number) {

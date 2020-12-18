@@ -517,11 +517,12 @@ const AddContact = function(req,res){
 }
 
 const sendemail = function(req, res){
+    
     let user = req.body;
     console.log(user.name);
     sendMail(user, info =>{
-        res.status(201).json(info);
-    })
+        res.status(201).json("success");
+    });
 
 }
 async function sendMail(user, callback){
@@ -532,15 +533,15 @@ async function sendMail(user, callback){
         secure: false,
         auth: {
             user : "smp5993",
-            pass: "Swagat@1988"
+            pass: "****"
         }
     });
 
 let mailoptions ={
-    from: "Bon Appetit",
-    to: user.email,
-    subject: "welcome",
-    html: `<h1>${user.name}</h1>`
+    from: user.email,
+    to: "smp5993@gmail.com",
+    subject: "Bon Appetit - Customer Query",
+    html: `<p><b>Sender Name:</b> ${user.name} <br> <b>Sender Email:</b> ${user.email} <br><br><b>Sender Message:</b> ${user.message}</p>`
 };
 
 let info = await transporter.sendMail(mailoptions);
