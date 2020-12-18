@@ -25,6 +25,10 @@
                                    </div>
                                    <div class="modal-body">
                                     <p class="">{{food.description}}</p> 
+                                    <p><b><u>Ingredients</u></b></p>
+                                    <p *ngFor= "let item of food.ingredients" class="">
+                                        {{item.name}}
+                                    </p> 
                                    </div>
                                    <div></div>
                                

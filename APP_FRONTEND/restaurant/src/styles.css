@@ -10,10 +10,10 @@ body {
   .bodyimage1{
     background-color: #f5f5f5;
     background: linear-gradient(rgba(2, 2, 2, 0.4), rgba(10, 10, 10, 0.6)), url(assets/images/back1.jpg);
+    /* background-image: url(assets/images/bon4.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
-    
   }
 
   .basic{
@@ -124,8 +124,8 @@ body {
     min-width:200px;
     text-decoration:none;
     font-size: 18px;
-    background-color: white;
-    color: #504e4e;
+    background-color: #d00404;
+    color: white;
     border-radius: 0px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     box-shadow: -3px 3px #52504b, -2px 2px #52504b, -1px 1px #52504b;
