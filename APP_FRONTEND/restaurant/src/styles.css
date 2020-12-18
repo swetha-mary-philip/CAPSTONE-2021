@@ -5,6 +5,7 @@ body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #f5f5f5;
     padding-top: 70px;
+    font-variant: all-petite-caps;
   }
 
   .bodyimage1{
@@ -34,10 +35,10 @@ body {
   }
 
   .backimg{
-    background: linear-gradient(rgb(255 255 255 / 43%), rgb(255 255 255 / 60%)), url(assets/images/food.jpg);
+    background: linear-gradient(rgba(2, 2, 2, 0.4), rgba(10, 10, 10, 0.6)), url(assets/images/back1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 500px;
+    min-height: 540px;
     background-position: center;
     width: 100%;
   }
@@ -49,7 +50,7 @@ body {
 
   .nav>li>a:focus, .nav>li>a:hover{
     background-color:transparent;
-    color: #5cb85c;
+    color: blue;
   }
   .bg-theme{
     background-color: #f0b908;
@@ -131,7 +132,10 @@ body {
     box-shadow: -3px 3px #52504b, -2px 2px #52504b, -1px 1px #52504b;
     border: 1px solid #52504b;
   }
-
+.creds{
+  border: 2px solid white;
+  padding: 5px;
+}
   .explore2{
     color:white;
     min-width:200px;

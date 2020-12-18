@@ -43,7 +43,6 @@ const getsinglemenu = function (req, res){
 
 };
 
-
 const createmenu = function(req,res){
   console.log(req.body);
 
@@ -533,7 +532,7 @@ async function sendMail(user, callback){
         secure: false,
         auth: {
             user : "smp5993",
-            pass: "***"
+            pass: "Swagat@1988"
         }
     });
 
